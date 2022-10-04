@@ -16,7 +16,7 @@ public class BookController {
     private BookService service;
 
 
-    /*@PostMapping("create")
+    @PostMapping("create")
     public ResponseEntity<?> createBook(@RequestBody Book book){
         try{
             return new ResponseEntity<Book> (service.createBook(book), HttpStatus.OK);
@@ -25,13 +25,6 @@ public class BookController {
         }
     }
 
-     */
-
-    @PostMapping("create")
-    public Book createBook(@RequestBody Book book)throws Exception{
-        return service.createBook(book);
-
-    }
 
     @DeleteMapping("delete/{idBook}")
     public ResponseEntity<?> deleteBook(@PathVariable Integer idBook){
