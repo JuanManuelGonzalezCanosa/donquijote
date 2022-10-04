@@ -17,14 +17,14 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idbook", nullable = false)
+    @Column(name = "id_book", nullable = false)
     private Integer idBook;
 
 
-    @Column(name = "namebook", nullable = false)
+    @Column(name = "name_book", nullable = false)
     private String nameBook;
 
-    @Column(name = "nameauthor", nullable = false)
+    @Column(name = "name_author", nullable = false)
     private String nameAuthor;
 
     @Column(name = "stock", nullable = false)
