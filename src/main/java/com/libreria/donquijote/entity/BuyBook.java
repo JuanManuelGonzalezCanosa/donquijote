@@ -1,14 +1,13 @@
 package com.libreria.donquijote.entity;
 
 
-import com.libreria.donquijote.dto.BookDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -22,12 +21,14 @@ public class BuyBook {
     @Column(name = "id_buy", nullable = false)
     private Integer idBuy;
 
-    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "buy_date_book", nullable = false)
     private LocalDate buyDateBook;
 
-    @Column
-    private List<BookDto> lstBuyBook;
+    @OneToOne
+    @JoinColumn(name = "buy_book_id", updatable = false, nullable = false)
+    private Book buyBook;
 
-    @Column
+    @Column(name = "total")
     private float total;
 }

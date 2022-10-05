@@ -1,13 +1,12 @@
 package com.libreria.donquijote.entity;
 
-import com.libreria.donquijote.dto.BookDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -21,21 +20,25 @@ public class RentBook {
     @Column(name = "id_rent", nullable = false)
     private Integer idRent;
 
-    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "rent_date_book")
     private LocalDate rentDateBook;
 
-    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "rent_date_book_final")
     private LocalDate rentDateBookFinal;
 
-    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "return_date_book")
     private LocalDate returnDateBook;
 
-    @Column
-    private List<BookDto> lstRentBook;
+    @OneToOne
+    @JoinColumn(name = "rent_book_id", updatable = false, nullable = false)
+    private Book rentBook;
 
-    @Column
-    private float total;
-
-    @Column
+    @Column(name = "daily_book")
     private float dailyBook;
+
+    @Column(name = "total")
+    private float total;
 }

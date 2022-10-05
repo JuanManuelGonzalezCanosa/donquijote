@@ -32,6 +32,7 @@ public class BookService{
 
         aux.setNameBook(book.getNameBook());
         aux.setNameAuthor(book.getNameAuthor());
+        aux.setPrice(book.getPrice());
         aux.setStock(book.getStock());
 
         return repository.save(aux);
