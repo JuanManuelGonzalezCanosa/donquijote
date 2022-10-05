@@ -27,6 +27,9 @@ public class Book {
     @Column(name = "name_author", nullable = false)
     private String nameAuthor;
 
+    @Column(name = "price", nullable = false)
+    private float price;
+
     @Column(name = "stock", nullable = false)
     private int stock;
 }
