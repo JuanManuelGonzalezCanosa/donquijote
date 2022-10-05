@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/book/")
 public class BookController {
@@ -42,6 +44,20 @@ public class BookController {
         }catch (Exception e){
             return new ResponseEntity<Book>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("{idBook}")
+    public ResponseEntity<?> getBookId(@PathVariable Integer idBook){
+        try{
+            return new ResponseEntity<Book>(service.getBookId(idBook), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<Book>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("list")
+    public List<Book> getBookLst(){
+        return service.getBookLst();
     }
 
 }

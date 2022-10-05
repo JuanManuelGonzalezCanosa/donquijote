@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Qualifier("bookservice")
 @Service
 public class BookService{
@@ -20,9 +22,7 @@ public class BookService{
     }
 
 
-    public boolean deleteBookId(Integer idBook) {
-        repository.deleteById(idBook);
-
+    public boolean deleteBookId(Integer idBook) {repository.deleteById(idBook);
         return true;
     }
 
@@ -40,4 +40,6 @@ public class BookService{
     public Book getBookId(Integer idBook){
         return repository.findById(idBook).get();
     }
+
+    public List<Book> getBookLst(){return repository.findAll();}
 }
