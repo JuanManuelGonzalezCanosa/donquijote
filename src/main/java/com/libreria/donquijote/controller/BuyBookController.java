@@ -28,15 +28,33 @@ public class BuyBookController {
 
     @PostMapping("{idBook}")
     public ResponseEntity<?> buyBook(@PathVariable Integer idBook) throws Exception {
-        //try{
+        try{
             ResponseEntity<Book> response = restTemplate.getForEntity("http://localhost:8080/book/" + idBook.toString(), Book.class);
 
             Book book = response.getBody();
 
             return new ResponseEntity<BuyBook>(service.buyBook(book) , HttpStatus.OK);
-       // }catch (Exception e){
-       //     return new ResponseEntity<BuyBook>(HttpStatus.BAD_REQUEST);
-       // }
+        }catch (Exception e){
+            return new ResponseEntity<BuyBook>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("put/{idBookBuy}")
+    public ResponseEntity<?> putBuyBook(@PathVariable Integer idBookBuy, @RequestBody BuyBook buyBook){
+        try{
+            return new ResponseEntity<>(service.putBuyBook(idBookBuy, buyBook), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<BuyBook>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("delete/{idBuyBook}")
+    public ResponseEntity<?> deleteBuyBook(@PathVariable Integer idBuyBook){
+        try{
+            return new ResponseEntity<>(service.deleteBuyBook(idBuyBook), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<BuyBook>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 

@@ -48,4 +48,19 @@ public class BuyBookService {
     public BuyBook getBuyId(Integer idBookId){
         return repository.findById(idBookId).get();
     }
+
+    public BuyBook putBuyBook(Integer idBookBuy, BuyBook buyBook) {
+        BuyBook aux = this.getBuyId(idBookBuy);
+
+        aux.setBook(buyBook.getBook());
+        aux.setBuyDateBook(buyBook.getBuyDateBook());
+
+        return repository.save(aux);
+    }
+
+    public boolean deleteBuyBook(Integer idBuyBook) {
+        repository.deleteById(idBuyBook);
+
+        return true;
+    }
 }
