@@ -21,7 +21,7 @@ public class BookController {
     @PostMapping("create")
     public ResponseEntity<?> createBook(@RequestBody Book book){
         try{
-            return new ResponseEntity<Book> (service.createBook(book), HttpStatus.OK);
+            return new ResponseEntity<>(service.createBook(book), HttpStatus.OK);
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -40,7 +40,7 @@ public class BookController {
     @PutMapping("put/{idBook}")
     public ResponseEntity<?> putBook(@PathVariable Integer idBook, @RequestBody Book book){
         try{
-            return new ResponseEntity<Book>(service.putBook(idBook, book), HttpStatus.OK);
+            return new ResponseEntity<>(service.putBook(idBook, book), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<Book>(HttpStatus.BAD_REQUEST);
         }
@@ -49,7 +49,7 @@ public class BookController {
     @GetMapping("{idBook}")
     public ResponseEntity<?> getBookId(@PathVariable Integer idBook){
         try{
-            return new ResponseEntity<Book>(service.getBookId(idBook), HttpStatus.OK);
+            return new ResponseEntity<>(service.getBookId(idBook), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<Book>(HttpStatus.BAD_REQUEST);
         }

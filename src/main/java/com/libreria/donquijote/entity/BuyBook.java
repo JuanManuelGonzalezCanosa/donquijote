@@ -26,9 +26,7 @@ public class BuyBook {
     private LocalDate buyDateBook;
 
     @OneToOne
-    @JoinColumn(name = "buy_book_id", updatable = false, nullable = false)
-    private Book buyBook;
+    @JoinColumn(name = "book_id", updatable = false, nullable = false)
+    private Book Book;
 
-    @Column(name = "total")
-    private float total;
 }
