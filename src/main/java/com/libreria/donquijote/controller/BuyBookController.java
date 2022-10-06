@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/bookbuy/")
+@RequestMapping("/book/buy/")
 public class BuyBookController {
 
     @Autowired
@@ -39,25 +39,37 @@ public class BuyBookController {
         }
     }
 
-    @PutMapping("put/{idBookBuy}")
-    public ResponseEntity<?> putBuyBook(@PathVariable Integer idBookBuy, @RequestBody BuyBook buyBook){
-        try{
-            return new ResponseEntity<>(service.putBuyBook(idBookBuy, buyBook), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<BuyBook>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
     @DeleteMapping("delete/{idBuyBook}")
     public ResponseEntity<?> deleteBuyBook(@PathVariable Integer idBuyBook){
         try{
-            return new ResponseEntity<>(service.deleteBuyBook(idBuyBook), HttpStatus.OK);
+            return new ResponseEntity<>(service.deleteBuy(idBuyBook), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<BuyBook>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("id/{idBuyBook}")
+    public ResponseEntity<?> getBuyId(@PathVariable Integer idBuyBook){
+        try{
+            return new ResponseEntity<>(service.getBuyId(idBuyBook), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<BuyBook>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("list")
+    public ResponseEntity<?> getBuyLst(){
+        try{
+            return new ResponseEntity<>(service.getBuyLst(), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<BuyBook>(HttpStatus.BAD_REQUEST);
         }
     }
 
 
+    }
 
 
-}
+
+
+

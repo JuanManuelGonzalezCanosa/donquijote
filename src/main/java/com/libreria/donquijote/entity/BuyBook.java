@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class BuyBook {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_buy", nullable = false)
     private Integer idBuy;
 

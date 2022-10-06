@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class RentBook {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_rent", nullable = false)
     private Integer idRent;
 
@@ -34,11 +34,8 @@ public class RentBook {
 
     @OneToOne
     @JoinColumn(name = "rent_book_id", updatable = false, nullable = false)
-    private Book rentBook;
+    private Book book;
 
     @Column(name = "daily_book")
     private float dailyBook;
-
-    @Column(name = "total")
-    private float total;
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Qualifier("buybookservice")
 @Service
@@ -49,18 +50,6 @@ public class BuyBookService {
         return repository.findById(idBookId).get();
     }
 
-    public BuyBook putBuyBook(Integer idBookBuy, BuyBook buyBook) {
-        BuyBook aux = this.getBuyId(idBookBuy);
+    public List<BuyBook> getBuyLst(){return repository.findAll();}
 
-        aux.setBook(buyBook.getBook());
-        aux.setBuyDateBook(buyBook.getBuyDateBook());
-
-        return repository.save(aux);
-    }
-
-    public boolean deleteBuyBook(Integer idBuyBook) {
-        repository.deleteById(idBuyBook);
-
-        return true;
-    }
 }
