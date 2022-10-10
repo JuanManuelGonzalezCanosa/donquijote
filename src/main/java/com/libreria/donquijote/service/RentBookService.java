@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Qualifier("rentbookservice")
@@ -54,6 +55,12 @@ public class RentBookService {
 
 
     //HACER LA DEVOLUCION DEL LIBRO Y SUMAR LOS DIAS ATRASADOS SI ES QUE TIENE
-    //public RentBook returnRent() {
-    //}
+    public RentBook returnDate(Integer idBookRent, LocalDate returnDate) throws Exception{
+        RentBook rentBook = this.getRentId(idBookRent);
+        RentProxy rentProxy = new RentProxy(rentBook);
+
+        rentProxy.validateReturnDate(rentBook, returnDate);
+
+        return repository.save(rentBook);
+    }
 }

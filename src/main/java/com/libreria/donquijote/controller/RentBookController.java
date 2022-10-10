@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
+
 @RestController
 @RequestMapping("/book/rent/")
 public class RentBookController {
@@ -21,56 +23,57 @@ public class RentBookController {
     private RestTemplate restTemplate;
 
     @Autowired
-    public RentBookController(RestTemplateBuilder restTemplateBuilder){
+    public RentBookController(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
 
     @PostMapping("{rentBookid}")
-    public ResponseEntity<?> rentBook(@PathVariable Integer rentBookid){
-        try{
+    public ResponseEntity<?> rentBook(@PathVariable Integer rentBookid) {
+        try {
             ResponseEntity<Book> response = restTemplate.getForEntity("http://localhost:8080/book/" + rentBookid.toString(), Book.class);
             Book book = response.getBody();
 
             return new ResponseEntity<>(service.rentBook(book), HttpStatus.OK);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<RentBook>(HttpStatus.BAD_REQUEST);
         }
     }
 
     @DeleteMapping("delete/{idRentBook}")
-    public ResponseEntity<?> deleteRentBook(@PathVariable Integer idRentBook){
-        try{
+    public ResponseEntity<?> deleteRentBook(@PathVariable Integer idRentBook) {
+        try {
             return new ResponseEntity<>(service.deleteRent(idRentBook), HttpStatus.OK);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<RentBook>(HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("id/{idRentBook}")
-    public ResponseEntity<?> getRentId(@PathVariable Integer idRentBook){
-        try{
+    public ResponseEntity<?> getRentId(@PathVariable Integer idRentBook) {
+        try {
             return new ResponseEntity<>(service.getRentId(idRentBook), HttpStatus.OK);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<RentBook>(HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("list")
-    public ResponseEntity<?> getRentLst(){
-        try{
+    public ResponseEntity<?> getRentLst() {
+        try {
             return new ResponseEntity<>(service.getRentLst(), HttpStatus.OK);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<RentBook>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    //@PutMapping("return/{idBookRent}")
-    //public ResponseEntity<?> returnRent(@PathVariable Integer idBookRent, @RequestBody LocalDate returnDate){
-        //try{
-            //return new ResponseEntity<>(service.returnDate(), HttpStatus.OK);
-        //}catch (Exception e){
-           // return new ResponseEntity<RentBook>(HttpStatus.BAD_REQUEST);
-        //}
+    @PutMapping("return/{idBookRent}")
+    public ResponseEntity<?> returnRent(@PathVariable Integer idBookRent, @RequestBody LocalDate returnDateBook) {
+        try {
+            return new ResponseEntity<>(service.returnDate(idBookRent, returnDateBook), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<RentBook>(HttpStatus.BAD_REQUEST);
+        }
     }
+}
 
