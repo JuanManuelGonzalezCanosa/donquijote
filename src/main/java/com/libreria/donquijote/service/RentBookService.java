@@ -3,12 +3,13 @@ package com.libreria.donquijote.service;
 
 import com.libreria.donquijote.entity.Book;
 import com.libreria.donquijote.entity.RentBook;
+import com.libreria.donquijote.proxy.RentProxy;
+import com.libreria.donquijote.repository.IBookRepository;
 import com.libreria.donquijote.repository.IRentBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Qualifier("rentbookservice")
@@ -18,18 +19,17 @@ public class RentBookService {
     @Autowired
     private IRentBookRepository repository;
 
+    @Autowired
+    private IBookRepository repositoryBook;
+
     public RentBook rentBook(Book book) throws Exception{
-        RentBook aux = new RentBook();
+        RentBook rentBook = new RentBook();
+        RentProxy rentProxy = new RentProxy(rentBook);
 
-        if(book.getStock() <= 0){
-            throw new Exception("Error no hay STOCK");
-        }
+        rentProxy.validateStock(rentBook, book);
 
-        aux.setBook(book);
-        aux.setRentDateBook(LocalDate.now());
-        aux.setRentDateBookFinal(LocalDate.now().plusMonths(1));
-
-        return repository.save(aux);
+        repositoryBook.save(book);
+        return repository.save(rentBook);
     }
 
     public RentBook putRentBook(RentBook rentBook, Integer idBookRent) {

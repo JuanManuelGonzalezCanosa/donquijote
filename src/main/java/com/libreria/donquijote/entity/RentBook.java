@@ -38,4 +38,7 @@ public class RentBook {
 
     @Column(name = "daily_book")
     private float dailyBook;
+
+    @Column(name = "total_rent")
+    private float totalRent;
 }

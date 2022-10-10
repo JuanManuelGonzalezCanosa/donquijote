@@ -2,12 +2,13 @@ package com.libreria.donquijote.service;
 
 import com.libreria.donquijote.entity.Book;
 import com.libreria.donquijote.entity.BuyBook;
+import com.libreria.donquijote.proxy.BuyProxy;
+import com.libreria.donquijote.repository.IBookRepository;
 import com.libreria.donquijote.repository.IBuyBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Qualifier("buybookservice")
@@ -17,18 +18,16 @@ public class BuyBookService {
     @Autowired
     private IBuyBookRepository repository;
 
+    @Autowired
+    private IBookRepository repositoryBook;
+
     public BuyBook buyBook(Book book) throws Exception {
         BuyBook buyBook = new BuyBook();
+        BuyProxy buyProxy = new BuyProxy(buyBook);
 
-        //Validamos si hay Stock y Descontamos Y Creamos la Compra del Libro
-        if(book.getStock() <= 0){
-            throw new Exception("Error no hay STOCK");
-        }
+        buyProxy.validateStock(buyBook, book);
 
-        buyBook.setBook(book);
-        buyBook.getBook().setStock(book.getStock() - 1);
-        buyBook.setBuyDateBook(LocalDate.now());
-
+        repositoryBook.save(book);
         return repository.save(buyBook);
     }
 
