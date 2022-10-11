@@ -4,6 +4,7 @@ import com.libreria.donquijote.entity.Book;
 import com.libreria.donquijote.entity.RentBook;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -30,20 +31,45 @@ public class RentProxy implements IRentProxy{
     }
 
     @Override
-    public void validateReturnDate(RentBook rentBook, LocalDate returnDate) throws Exception {
+    public void validateReturnDate(RentBook rentBook, String returnDate) throws Exception {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate returnLocalDate = LocalDate.parse(returnDate, formatter);
 
-        if(rentBook.getRentDateBook().isBefore(returnDate)){
+
+        if(rentBook.getRentDateBook().isBefore(returnLocalDate)){
             new Exception("ERROR la Fecha ingresada es Antes del Alquiler del Libro");
         }
 
-        if(rentBook.getRentDateBookFinal().isAfter(returnDate)){
-            long days = DAYS.between(rentBook.getRentDateBookFinal(), returnDate);
+        if(rentBook.getRentDateBookFinal().isAfter(returnLocalDate)){
+            long days = DAYS.between(rentBook.getRentDateBookFinal(), returnLocalDate);
 
             float daily = days * (rentBook.getBook().getPrice() / 50);
 
-            rentBook.setDailyBook(days);
+            rentBook.setDailyBook(daily);
             rentBook.setTotalRent(rentBook.getBook().getPrice() + daily);
-        }
-        rentBook.setReturnDateBook(returnDate);
+        }else{ rentBook.setTotalRent(rentBook.getBook().getPrice());}
+
+        rentBook.setReturnDateBook(returnLocalDate);
     }
+
+    @Override
+    public void validateReturnDateII(RentBook rentBook) throws Exception {
+
+        if(rentBook.getRentDateBook().isBefore(rentBook.getReturnDateBook())){
+            new Exception("ERROR la Fecha ingresada es Antes del Alquiler del Libro");
+        }
+
+        if(!rentBook.getRentDateBookFinal().isAfter(rentBook.getReturnDateBook())){
+            long days = DAYS.between(rentBook.getRentDateBookFinal(), rentBook.getReturnDateBook());
+
+            float daily = days * (rentBook.getBook().getPrice() / 50);
+
+            rentBook.setDailyBook(daily);
+            rentBook.setTotalRent(rentBook.getBook().getPrice() + daily);
+        }else{ rentBook.setTotalRent(rentBook.getBook().getPrice());}
+
+        rentBook.getBook().setStock(rentBook.getBook().getStock() + 1);
+        rentBook.setReturnDateBook(rentBook.getReturnDateBook());
+    }
+
 }

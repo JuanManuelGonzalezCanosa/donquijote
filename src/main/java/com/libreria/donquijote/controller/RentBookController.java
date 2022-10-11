@@ -11,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.LocalDate;
-
 @RestController
 @RequestMapping("/book/rent/")
 public class RentBookController {
@@ -68,9 +66,18 @@ public class RentBookController {
     }
 
     @PutMapping("return/{idBookRent}")
-    public ResponseEntity<?> returnRent(@PathVariable Integer idBookRent, @RequestBody LocalDate returnDateBook) {
-        try {
+    public ResponseEntity<?> returnRent(@PathVariable Integer idBookRent, @RequestBody String returnDateBook)throws Exception{
+        //try {
             return new ResponseEntity<>(service.returnDate(idBookRent, returnDateBook), HttpStatus.OK);
+        //} catch (Exception e) {
+        //    return new ResponseEntity<RentBook>(HttpStatus.BAD_REQUEST);
+        //}
+    }
+
+    @PutMapping("return2/{idBookRent}")
+    public ResponseEntity<?> returnRentII(@RequestBody RentBook rentBook)throws Exception{
+        try {
+        return new ResponseEntity<>(service.returnDateII(rentBook), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<RentBook>(HttpStatus.BAD_REQUEST);
         }
