@@ -1,6 +1,7 @@
 package com.libreria.donquijote.controller;
 
 
+import com.libreria.donquijote.dto.ReturnDateBookRent;
 import com.libreria.donquijote.entity.Book;
 import com.libreria.donquijote.entity.RentBook;
 import com.libreria.donquijote.service.RentBookService;
@@ -66,7 +67,7 @@ public class RentBookController {
     }
 
     @PutMapping("return/{idBookRent}")
-    public ResponseEntity<?> returnRent(@PathVariable Integer idBookRent, @RequestBody String returnDateBook)throws Exception{
+    public ResponseEntity<?> returnRent(@PathVariable Integer idBookRent, @RequestBody ReturnDateBookRent returnDateBook)throws Exception{
         //try {
             return new ResponseEntity<>(service.returnDate(idBookRent, returnDateBook), HttpStatus.OK);
         //} catch (Exception e) {
@@ -74,13 +75,5 @@ public class RentBookController {
         //}
     }
 
-    @PutMapping("return2/{idBookRent}")
-    public ResponseEntity<?> returnRentII(@RequestBody RentBook rentBook)throws Exception{
-        try {
-        return new ResponseEntity<>(service.returnDateII(rentBook), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<RentBook>(HttpStatus.BAD_REQUEST);
-        }
-    }
 }
 

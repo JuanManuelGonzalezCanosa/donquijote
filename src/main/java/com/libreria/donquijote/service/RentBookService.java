@@ -1,6 +1,7 @@
 package com.libreria.donquijote.service;
 
 
+import com.libreria.donquijote.dto.ReturnDateBookRent;
 import com.libreria.donquijote.entity.Book;
 import com.libreria.donquijote.entity.RentBook;
 import com.libreria.donquijote.proxy.RentProxy;
@@ -54,7 +55,7 @@ public class RentBookService {
 
 
     //HACER LA DEVOLUCION DEL LIBRO Y SUMAR LOS DIAS ATRASADOS SI ES QUE TIENE
-    public RentBook returnDate(Integer idBookRent, String returnDate) throws Exception{
+    public RentBook returnDate(Integer idBookRent, ReturnDateBookRent returnDate) throws Exception{
         RentBook rentBook = this.getRentId(idBookRent);
         RentProxy rentProxy = new RentProxy(rentBook);
 
@@ -63,11 +64,4 @@ public class RentBookService {
         return repository.save(rentBook);
     }
 
-    public RentBook returnDateII(RentBook rentBook) throws Exception{
-        RentProxy rentProxy = new RentProxy(rentBook);
-
-        rentProxy.validateReturnDateII(rentBook);
-
-        return repository.save(rentBook);
-    }
 }

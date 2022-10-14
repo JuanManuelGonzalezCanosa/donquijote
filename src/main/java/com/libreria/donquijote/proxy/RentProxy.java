@@ -1,10 +1,10 @@
 package com.libreria.donquijote.proxy;
 
+import com.libreria.donquijote.dto.ReturnDateBookRent;
 import com.libreria.donquijote.entity.Book;
 import com.libreria.donquijote.entity.RentBook;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -31,17 +31,17 @@ public class RentProxy implements IRentProxy{
     }
 
     @Override
-    public void validateReturnDate(RentBook rentBook, String returnDate) throws Exception {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDate returnLocalDate = LocalDate.parse(returnDate, formatter);
+    public void validateReturnDate(RentBook rentBook, ReturnDateBookRent returnDate) throws Exception {
+        LocalDate returnDateFinal = LocalDate.of(returnDate.getYear(), returnDate.getMonth(), returnDate.getDay());
 
+        rentBook.setDailyBook(0);
 
-        if(rentBook.getRentDateBook().isBefore(returnLocalDate)){
+        if(!returnDateFinal.isBefore(rentBook.getRentDateBook())){
             new Exception("ERROR la Fecha ingresada es Antes del Alquiler del Libro");
         }
 
-        if(rentBook.getRentDateBookFinal().isAfter(returnLocalDate)){
-            long days = DAYS.between(rentBook.getRentDateBookFinal(), returnLocalDate);
+        if(!rentBook.getRentDateBookFinal().isAfter(returnDateFinal)){
+            long days = DAYS.between(rentBook.getRentDateBookFinal(), returnDateFinal);
 
             float daily = days * (rentBook.getBook().getPrice() / 50);
 
@@ -49,27 +49,7 @@ public class RentProxy implements IRentProxy{
             rentBook.setTotalRent(rentBook.getBook().getPrice() + daily);
         }else{ rentBook.setTotalRent(rentBook.getBook().getPrice());}
 
-        rentBook.setReturnDateBook(returnLocalDate);
-    }
-
-    @Override
-    public void validateReturnDateII(RentBook rentBook) throws Exception {
-
-        if(rentBook.getRentDateBook().isBefore(rentBook.getReturnDateBook())){
-            new Exception("ERROR la Fecha ingresada es Antes del Alquiler del Libro");
-        }
-
-        if(!rentBook.getRentDateBookFinal().isAfter(rentBook.getReturnDateBook())){
-            long days = DAYS.between(rentBook.getRentDateBookFinal(), rentBook.getReturnDateBook());
-
-            float daily = days * (rentBook.getBook().getPrice() / 50);
-
-            rentBook.setDailyBook(daily);
-            rentBook.setTotalRent(rentBook.getBook().getPrice() + daily);
-        }else{ rentBook.setTotalRent(rentBook.getBook().getPrice());}
-
-        rentBook.getBook().setStock(rentBook.getBook().getStock() + 1);
-        rentBook.setReturnDateBook(rentBook.getReturnDateBook());
+        rentBook.setReturnDateBook(returnDateFinal);
     }
 
 }
