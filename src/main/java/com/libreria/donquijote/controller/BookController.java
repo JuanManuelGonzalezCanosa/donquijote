@@ -38,6 +38,15 @@ public class BookController {
         }
     }
 
+    @PutMapping("deleteactive/{idBook}")
+    public ResponseEntity<?> deleteBookActive(@PathVariable Integer idBook){
+        try{
+            return new ResponseEntity<>(service.deleteBookIdActive(idBook), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<Book>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PutMapping("put/{idBook}")
     public ResponseEntity<?> putBook(@PathVariable Integer idBook, @RequestBody Book book){
         try{
@@ -59,6 +68,12 @@ public class BookController {
     @GetMapping("list")
     public List<Book> getBookLst(){
         return service.getBookLst();
+    }
+
+    @GetMapping("listactive")
+    public List<Book> getBookLstActive(){
+
+        return service.getBookLstActive();
     }
 
 }

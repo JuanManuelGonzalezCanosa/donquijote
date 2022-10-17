@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Qualifier("bookservice")
 @Service
@@ -42,5 +43,19 @@ public class BookService{
         return repository.findById(idBook).get();
     }
 
-    public List<Book> getBookLst(){return repository.findAll();}
+    public List<Book> getBookLst(){
+        return repository.findAll();}
+
+    public List<Book> getBookLstActive(){
+        return repository.findAll().stream().filter(book -> book.isActiveBook()==true).collect(Collectors.toList());
+    }
+
+
+    public Book deleteBookIdActive(Integer idBook) {
+        Book aux = this.getBookId(idBook);
+
+        aux.setActiveBook(false);
+
+        return repository.save(aux);
+    }
 }

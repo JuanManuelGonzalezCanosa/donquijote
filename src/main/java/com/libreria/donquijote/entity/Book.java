@@ -32,4 +32,7 @@ public class Book {
 
     @Column(name = "stock", nullable = false)
     private int stock;
+
+    @Column(name = "active_book", nullable = false)
+    private boolean activeBook = true;
 }

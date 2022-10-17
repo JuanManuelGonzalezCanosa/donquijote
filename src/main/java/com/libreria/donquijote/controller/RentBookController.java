@@ -68,11 +68,11 @@ public class RentBookController {
 
     @PutMapping("return/{idBookRent}")
     public ResponseEntity<?> returnRent(@PathVariable Integer idBookRent, @RequestBody ReturnDateBookRent returnDateBook)throws Exception{
-        //try {
+        try {
             return new ResponseEntity<>(service.returnDate(idBookRent, returnDateBook), HttpStatus.OK);
-        //} catch (Exception e) {
-        //    return new ResponseEntity<RentBook>(HttpStatus.BAD_REQUEST);
-        //}
+        } catch (Exception e) {
+            return new ResponseEntity<RentBook>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }
