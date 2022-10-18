@@ -27,4 +27,7 @@ public class Client {
     @Column(name = "dni" , nullable = false)
     private long dni;
 
+    @Column(name = "active")
+    private boolean active = true;
+
 }

@@ -36,11 +36,11 @@ public class ClientController {
 
     @GetMapping("list")
     public ResponseEntity<?> getClientLst(){
-        try {
+        //try {
             return new ResponseEntity<>(service.getClientLst(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<Client>(HttpStatus.BAD_REQUEST);
-        }
+        //}catch (Exception e){
+        //    return new ResponseEntity<Client>(HttpStatus.BAD_REQUEST);
+        //}
     }
 
     @PutMapping("put/{idClient}")
