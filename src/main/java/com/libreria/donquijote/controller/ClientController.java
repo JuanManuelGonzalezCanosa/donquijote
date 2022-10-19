@@ -36,11 +36,11 @@ public class ClientController {
 
     @GetMapping("list")
     public ResponseEntity<?> getClientLst(){
-        //try {
+        try {
             return new ResponseEntity<>(service.getClientLst(), HttpStatus.OK);
-        //}catch (Exception e){
-        //    return new ResponseEntity<Client>(HttpStatus.BAD_REQUEST);
-        //}
+        }catch (Exception e){
+            return new ResponseEntity<Client>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping("put/{idClient}")
@@ -56,6 +56,33 @@ public class ClientController {
     public ResponseEntity<?> deleteClient(@PathVariable Integer idClient){
         try {
             return new ResponseEntity<>(service.deleteClient(idClient), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<Client>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("name")
+    public ResponseEntity<?> getClientName(@RequestBody String name){
+        try{
+            return new ResponseEntity<>(service.getClientName(name), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<Client>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("lastname")
+    public ResponseEntity<?> getClientLastName(@RequestBody String lastName){
+        try{
+            return new ResponseEntity<>(service.getClientLastName(lastName), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<Client>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("dni/{dni}")
+    public ResponseEntity<?> getClientDni(@PathVariable Integer dni){
+        try{
+            return new ResponseEntity<>(service.getClientDni(dni), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<Client>(HttpStatus.BAD_REQUEST);
         }
