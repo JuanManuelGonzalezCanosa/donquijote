@@ -1,6 +1,6 @@
 package com.libreria.donquijote.rentbook.infrastrcuture.controller;
 
-import com.libreria.donquijote.rentbook.application.IServiceRentBook;
+import com.libreria.donquijote.rentbook.application.rent.IServiceRentBook;
 import com.libreria.donquijote.rentbook.domain.RentBook;
 import org.springframework.web.bind.annotation.RestController;
 

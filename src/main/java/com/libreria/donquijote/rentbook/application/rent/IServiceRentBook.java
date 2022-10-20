@@ -1,4 +1,4 @@
-package com.libreria.donquijote.rentbook.application;
+package com.libreria.donquijote.rentbook.application.rent;
 
 
 import com.libreria.donquijote.rentbook.domain.RentBook;

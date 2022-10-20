@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "RENT_BOOK")
+@Table(name = "RENT_BOOK", schema = "TESTDB")
 public class RentBook {
 
     @Id
