@@ -61,8 +61,8 @@ public class ClientController {
         }
     }
 
-    @GetMapping("name")
-    public ResponseEntity<?> getClientName(@RequestBody String name){
+    @GetMapping("name/{name}")
+    public ResponseEntity<?> getClientName(@PathVariable String name){
         try{
             return new ResponseEntity<>(service.getClientName(name), HttpStatus.OK);
         }catch (Exception e){
@@ -70,8 +70,8 @@ public class ClientController {
         }
     }
 
-    @GetMapping("lastname")
-    public ResponseEntity<?> getClientLastName(@RequestBody String lastName){
+    @GetMapping("lastname/{lastName}")
+    public ResponseEntity<?> getClientLastName(@PathVariable String lastName){
         try{
             return new ResponseEntity<>(service.getClientLastName(lastName), HttpStatus.OK);
         }catch (Exception e){
