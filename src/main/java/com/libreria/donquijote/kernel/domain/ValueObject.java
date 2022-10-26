@@ -1,4 +1,6 @@
 package com.libreria.donquijote.kernel.domain;
 
-public interface ValueObject {
+import java.io.Serializable;
+
+public interface ValueObject extends Serializable {
 }

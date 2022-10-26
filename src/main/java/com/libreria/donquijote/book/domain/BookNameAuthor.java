@@ -3,10 +3,9 @@ package com.libreria.donquijote.book.domain;
 import com.libreria.donquijote.kernel.domain.ValueObject;
 import com.sun.istack.NotNull;
 
-import java.io.Serializable;
 
 
-public class BookNameAuthor implements ValueObject, Serializable {
+public class BookNameAuthor implements ValueObject {
     private String firstName;
     private String lastName;
 

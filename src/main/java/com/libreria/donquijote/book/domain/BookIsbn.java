@@ -3,13 +3,10 @@ package com.libreria.donquijote.book.domain;
 import com.libreria.donquijote.kernel.domain.ValueObject;
 import com.sun.istack.NotNull;
 
-import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class BookIsbn implements ValueObject, Serializable {
-
-
+public class BookIsbn implements ValueObject {
     private final String id;
 
     public BookIsbn(String id) {

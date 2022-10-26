@@ -1,21 +1,20 @@
 package com.libreria.donquijote.book.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Setter
+@Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "BOOK")
 public class Book implements Serializable {
+    @Id
     @Convert(converter = BookIsbnConverter.class)
     private BookIsbn bookIsbn;
 
@@ -23,6 +22,7 @@ public class Book implements Serializable {
     private String nameBook;
 
     @Convert(converter = BookNameAuthorConvert.class)
+    @Column(name = "full_name_author", nullable = false)
     private BookNameAuthor bookNameAuthor;
     @Column(name = "stock", nullable = false)
     private Integer stock;
@@ -30,25 +30,5 @@ public class Book implements Serializable {
     @Column(name = "price", nullable = false)
     private float price;
 
-    @Id
-    public BookIsbn getBookIsbn() {
-        return bookIsbn;
-    }
 
-    public String getNameBook() {
-        return nameBook;
-    }
-
-    @Column(name = "full_name_author", nullable = false)
-    public BookNameAuthor getBookNameAuthor() {
-        return bookNameAuthor;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public float getPrice() {
-        return price;
-    }
 }
