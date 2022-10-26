@@ -1,19 +1,17 @@
 package com.libreria.donquijote.book.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
-@Table(name = "BOOK")
+@Table(name = "BOOK", schema = "donquijotehexagonal")
 public class Book {
 
     @Id
@@ -21,16 +19,16 @@ public class Book {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "Name_Book", nullable = false)
+    @Column(name = "name_book", nullable = false)
     private String nameBook;
 
-    @Column(name = "Name_Author", nullable = false)
+    @Column(name = "name_author", nullable = false)
     private String nameAuthor;
 
-    @Column(name = "Stock", nullable = false)
+    @Column(name = "stock", nullable = false)
     private Integer stock;
 
-    @Column(name = "Price", nullable = false)
+    @Column(name = "price", nullable = false)
     private float price;
 
 }
