@@ -21,7 +21,7 @@ public class BookPutService implements IBookPutService{
         Book aux = repository.findById(id).get();
 
         aux.setNameBook(book.getNameBook());
-        aux.setNameAuthor(book.getNameAuthor());
+       // aux.setBookNameAuthor(new BookNameAuthor(book.getNameBook(),book.);
         aux.setPrice(book.getPrice());
         aux.setStock(book.getStock());
 
