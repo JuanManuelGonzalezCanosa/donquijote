@@ -1,13 +1,14 @@
-package com.libreria.donquijote.book.application.abm;
+package com.libreria.donquijote.book.application.delete;
 
-import com.libreria.donquijote.book.domain.BookException;
+import com.libreria.donquijote.book.domain.exception.BookException;
 import com.libreria.donquijote.book.domain.IBookRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-public class BookDeleteService implements IBookDeleteService{
+public class BookDeleteService implements IBookDeleteService {
 
     private IBookRepository repository;
 
-    public BookDeleteService(IBookRepository repository) {
+    public BookDeleteService(@Qualifier("ibookrepository") IBookRepository repository) {
         this.repository = repository;
     }
 

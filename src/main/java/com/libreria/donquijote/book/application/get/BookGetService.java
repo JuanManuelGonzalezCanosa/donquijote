@@ -1,18 +1,19 @@
-package com.libreria.donquijote.book.application.abm;
+package com.libreria.donquijote.book.application.get;
 
 import com.libreria.donquijote.book.domain.Book;
-import com.libreria.donquijote.book.domain.BookIsEmpety;
-import com.libreria.donquijote.book.domain.BookNotFoundException;
+import com.libreria.donquijote.book.domain.exception.BookIsEmpety;
+import com.libreria.donquijote.book.domain.exception.BookNotFoundException;
 import com.libreria.donquijote.book.domain.IBookRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.List;
 import java.util.Optional;
 
-public class BookGetService implements IBookGetService{
+public class BookGetService implements IBookGetService {
 
     private final IBookRepository repository;
 
-    public BookGetService(IBookRepository repository) {
+    public BookGetService(@Qualifier("ibookrepository") IBookRepository repository) {
         this.repository = repository;
     }
 

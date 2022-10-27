@@ -1,11 +1,13 @@
-package com.libreria.donquijote.book.infrastructure.controller;
+package com.libreria.donquijote.book.infrastructure.controller.get;
 
-import com.libreria.donquijote.book.application.abm.IBookGetService;
+import com.libreria.donquijote.book.application.get.IBookGetService;
 import com.libreria.donquijote.book.domain.Book;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-public class GetBookController implements IGetBookController{
+@RestController
+public class GetBookController implements IGetBookController {
 
     private final IBookGetService service;
 

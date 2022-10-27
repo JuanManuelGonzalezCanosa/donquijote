@@ -1,5 +1,6 @@
-package com.libreria.donquijote.book.domain;
+package com.libreria.donquijote.book.domain.isbn;
 
+import com.libreria.donquijote.book.domain.isbn.BookIsbn;
 import com.sun.istack.NotNull;
 
 import javax.persistence.AttributeConverter;

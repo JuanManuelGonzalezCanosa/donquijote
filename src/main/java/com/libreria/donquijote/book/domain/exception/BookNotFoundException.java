@@ -1,4 +1,4 @@
-package com.libreria.donquijote.book.domain;
+package com.libreria.donquijote.book.domain.exception;
 
 public class BookNotFoundException extends RuntimeException{
 

@@ -1,4 +1,4 @@
-package com.libreria.donquijote.book.domain;
+package com.libreria.donquijote.book.domain.nameauthor;
 
 import com.libreria.donquijote.kernel.domain.ValueObject;
 import com.sun.istack.NotNull;

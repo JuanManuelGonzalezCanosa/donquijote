@@ -1,4 +1,6 @@
-package com.libreria.donquijote.book.domain;
+package com.libreria.donquijote.book.domain.nameauthor;
+
+import com.libreria.donquijote.book.domain.nameauthor.BookNameAuthor;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

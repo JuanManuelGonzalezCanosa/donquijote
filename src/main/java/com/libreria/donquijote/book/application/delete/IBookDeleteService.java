@@ -1,4 +1,4 @@
-package com.libreria.donquijote.book.application.abm;
+package com.libreria.donquijote.book.application.delete;
 
 public interface IBookDeleteService {
 

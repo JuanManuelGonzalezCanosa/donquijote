@@ -1,10 +1,11 @@
-package com.libreria.donquijote.book.application.abm;
+package com.libreria.donquijote.book.application.put;
 
 import com.libreria.donquijote.book.domain.Book;
-import com.libreria.donquijote.book.domain.BookException;
+import com.libreria.donquijote.book.domain.exception.BookException;
+import com.libreria.donquijote.book.domain.nameauthor.BookNameAuthor;
 import com.libreria.donquijote.book.domain.IBookRepository;
 
-public class BookPutService implements IBookPutService{
+public class BookPutService implements IBookPutService {
 
     private final IBookRepository repository;
 
@@ -21,7 +22,7 @@ public class BookPutService implements IBookPutService{
         Book aux = repository.findById(id).get();
 
         aux.setNameBook(book.getNameBook());
-       // aux.setBookNameAuthor(new BookNameAuthor(book.getNameBook(),book.);
+        aux.setBookNameAuthor(new BookNameAuthor(book.getNameBook(),book.getBookNameAuthor().getLastName()));
         aux.setPrice(book.getPrice());
         aux.setStock(book.getStock());
 
