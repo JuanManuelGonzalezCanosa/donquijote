@@ -1,19 +1,22 @@
 package com.libreria.donquijote.bookprojection.infrastructure.listener;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.gson.Gson;
 import com.libreria.donquijote.book.domain.BookAddeDomain;
 import com.libreria.donquijote.bookprojection.application.save.IBookProjectionSave;
 import com.libreria.donquijote.bookprojection.domain.BookProjection;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-
 
 
 @Component
 public class ListenerBookAdded {
 
-    private IBookProjectionSave projection;
+    private final IBookProjectionSave projection;
+
+    public ListenerBookAdded(@Qualifier("serviceProjection") IBookProjectionSave projection) {
+        this.projection = projection;
+    }
 
     @EventListener
     public void saveProjection(BookAddeDomain bookAddeDomain) {

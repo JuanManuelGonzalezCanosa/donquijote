@@ -3,12 +3,12 @@ package com.libreria.donquijote.bookprojection.application.save;
 import com.libreria.donquijote.bookprojection.domain.BookProjection;
 import com.libreria.donquijote.bookprojection.domain.IBookProjecionRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@Qualifier("serviceProjection")
 public class BookProjectionSave implements IBookProjectionSave {
 
     private final IBookProjecionRepository repository;
