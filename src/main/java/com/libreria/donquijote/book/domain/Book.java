@@ -30,19 +30,19 @@ public class Book extends ItemBook implements Serializable{
     private BookIsbn bookIsbn;
 
     @Convert(converter = BookNameBookConverter.class)
-    @Column(name = "name_book", nullable = false)
+    @Column(name = "name_book")
     private BookNameBook nameBook;
 
     @Convert(converter = BookNameAuthorConvert.class)
-    @Column(name = "full_name_author", nullable = false)
+    @Column(name = "full_name_author")
     private BookNameAuthor bookNameAuthor;
 
     @Convert(converter = BookStockConverter.class)
-    @Column(name = "stock", nullable = false)
+    @Column(name = "stock")
     private BookStock stock;
 
     @Convert(converter = BookPriceConverter.class)
-    @Column(name = "price", nullable = false)
+    @Column(name = "price")
     private BookPrice price;
 
 

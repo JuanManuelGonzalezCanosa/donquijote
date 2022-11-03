@@ -23,9 +23,8 @@ public class BookStock implements ValueObject {
 
     @Override
     public String toString() {
-        return "BookStock{" +
-                "stock=" + stock +
-                '}';
+        return stock.toString();
+
     }
 
     public Integer getStock() {

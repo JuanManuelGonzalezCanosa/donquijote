@@ -22,7 +22,7 @@ public class BookNameBookConverter implements AttributeConverter<BookNameBook, S
             return null;
         }
 
-        BookNameBook bookNameBook = new BookNameBook(book.getNameBook().getNameBook());
+        BookNameBook bookNameBook = new BookNameBook(dbData);
 
         return bookNameBook;
 

@@ -2,7 +2,6 @@ package com.libreria.donquijote.book.domain;
 
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 public class BookAddeDomain {
@@ -16,9 +15,9 @@ public class BookAddeDomain {
 
     private final Integer stock;
 
-    private final float price;
+    private final Double price;
 
-    public BookAddeDomain(String id, String nameBook, String nameAuthor, Integer stock, float price) {
+    public BookAddeDomain(String id, String nameBook, String nameAuthor, Integer stock, Double price) {
         this.id = id;
         this.nameBook = nameBook;
         this.nameAuthor = nameAuthor;

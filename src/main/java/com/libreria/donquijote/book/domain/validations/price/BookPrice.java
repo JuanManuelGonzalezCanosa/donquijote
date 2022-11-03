@@ -5,9 +5,9 @@ import com.libreria.donquijote.kernel.domain.ValueObject;
 
 public class BookPrice implements ValueObject {
 
-    private float price;
+    private Double price;
 
-    public BookPrice(float price) {
+    public BookPrice(Double price) {
         this.price = price;
     }
 
@@ -23,16 +23,14 @@ public class BookPrice implements ValueObject {
 
     @Override
     public String toString() {
-        return "BookPrice{" +
-                "price=" + price +
-                '}';
+        return String.valueOf(price);
     }
 
-    public float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }

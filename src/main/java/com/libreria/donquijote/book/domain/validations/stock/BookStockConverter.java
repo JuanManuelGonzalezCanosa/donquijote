@@ -1,20 +1,17 @@
 package com.libreria.donquijote.book.domain.validations.stock;
 
-import com.libreria.donquijote.book.domain.validations.price.BookPrice;
-import com.sun.istack.NotNull;
-
 import javax.persistence.AttributeConverter;
 
-public class BookStockConverter implements AttributeConverter<BookStock, String> {
+public class BookStockConverter implements AttributeConverter<BookStock, Integer> {
 
     @Override
-    public String convertToDatabaseColumn(BookStock bookStock) {
-        return bookStock.toString();
+    public Integer convertToDatabaseColumn(BookStock bookStock) {
+        return bookStock.getStock();
     }
 
     @Override
-    public BookStock convertToEntityAttribute(String dbData) {
-        return null;
+    public BookStock convertToEntityAttribute(Integer dbData) {
+        return new BookStock(dbData);
     }
 
 }

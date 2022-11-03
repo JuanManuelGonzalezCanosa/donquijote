@@ -10,5 +10,5 @@ public class BookDTO {
     private String authorName;
     private String authorLastName;
     private Integer stock;
-    private float price;
+    private Double price;
 }

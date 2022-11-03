@@ -46,19 +46,6 @@ public class BookNameAuthorConvert implements AttributeConverter<BookNameAuthor,
             return null;
         }
 
-        BookNameAuthor bookNameAuthor = new BookNameAuthor(book.getBookNameAuthor().getFirstName(), book.getBookNameAuthor().getLastName());
-        String firstPiece = !pieces[0].isEmpty() ? pieces[0] : null;
-        if (dbPersonName.contains(SEPARATOR)) {
-            bookNameAuthor.setFirstName(firstPiece);
-
-            if (pieces.length >= 2 && pieces[1] != null
-                    && !pieces[1].isEmpty()) {
-                bookNameAuthor.setLastName(pieces[1]);
-            }
-        } else {
-            bookNameAuthor.setLastName(firstPiece);
-        }
-
-        return bookNameAuthor;
+        return new BookNameAuthor(pieces[0], pieces[1]);
     }
 }

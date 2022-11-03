@@ -13,7 +13,7 @@ public class BookCreateService implements IBookCreateService {
 
     private final IBookRepository repository;
 
-    private ApplicationEventPublisher applicationEventPublisher;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
 
     public BookCreateService(@Qualifier("ibookrepository") IBookRepository repository, ApplicationEventPublisher applicationEventPublisher) {
@@ -29,7 +29,7 @@ public class BookCreateService implements IBookCreateService {
         String nameBook = book.getNameBook().getNameBook();
         String nameAuthor = book.getBookNameAuthor().getFirstName() +" "+ book.getBookNameAuthor().getLastName();
         int stock = book.getStock().getStock();
-        float price = book.getPrice().getPrice();
+        Double price = book.getPrice().getPrice();
 
 
         applicationEventPublisher.publishEvent(new BookAddeDomain(id, nameBook, nameAuthor, stock, price));
