@@ -8,3 +8,4 @@ import org.springframework.stereotype.Repository;
 @Qualifier("ibookrepository")
 public interface IBookRepository extends JpaRepository<Book, Integer> {
 }
+
