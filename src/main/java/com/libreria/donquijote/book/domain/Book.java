@@ -1,13 +1,16 @@
 package com.libreria.donquijote.book.domain;
 
 
-import com.libreria.donquijote.book.domain.isbn.BookIsbn;
-import com.libreria.donquijote.book.domain.isbn.BookIsbnConverter;
-import com.libreria.donquijote.book.domain.nameauthor.BookNameAuthor;
-import com.libreria.donquijote.book.domain.nameauthor.BookNameAuthorConvert;
-import com.libreria.donquijote.book.domain.namebook.BookNameBook;
-import com.libreria.donquijote.book.domain.price.BookPrice;
-import com.libreria.donquijote.book.domain.stock.BookStock;
+import com.libreria.donquijote.book.domain.validations.isbn.BookIsbn;
+import com.libreria.donquijote.book.domain.validations.isbn.BookIsbnConverter;
+import com.libreria.donquijote.book.domain.validations.nameauthor.BookNameAuthor;
+import com.libreria.donquijote.book.domain.validations.nameauthor.BookNameAuthorConvert;
+import com.libreria.donquijote.book.domain.validations.namebook.BookNameBook;
+import com.libreria.donquijote.book.domain.validations.namebook.BookNameBookConverter;
+import com.libreria.donquijote.book.domain.validations.price.BookPrice;
+import com.libreria.donquijote.book.domain.validations.price.BookPriceConverter;
+import com.libreria.donquijote.book.domain.validations.stock.BookStock;
+import com.libreria.donquijote.book.domain.validations.stock.BookStockConverter;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,11 +23,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "BOOK")
-public class Book implements Serializable {
+public class Book extends ItemBook implements Serializable{
+
     @Id
     @Convert(converter = BookIsbnConverter.class)
     private BookIsbn bookIsbn;
 
+    @Convert(converter = BookNameBookConverter.class)
     @Column(name = "name_book", nullable = false)
     private BookNameBook nameBook;
 
@@ -32,9 +37,11 @@ public class Book implements Serializable {
     @Column(name = "full_name_author", nullable = false)
     private BookNameAuthor bookNameAuthor;
 
+    @Convert(converter = BookStockConverter.class)
     @Column(name = "stock", nullable = false)
     private BookStock stock;
 
+    @Convert(converter = BookPriceConverter.class)
     @Column(name = "price", nullable = false)
     private BookPrice price;
 

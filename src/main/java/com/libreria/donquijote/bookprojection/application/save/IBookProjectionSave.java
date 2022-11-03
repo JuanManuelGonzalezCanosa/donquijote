@@ -4,5 +4,7 @@ import com.libreria.donquijote.bookprojection.domain.BookProjection;
 
 public interface IBookProjectionSave {
 
-    void save(BookProjection bookProjection);
+    String findById(String id);
+
+    BookProjection save(BookProjection bookProjection);
 }

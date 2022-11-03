@@ -1,14 +1,24 @@
 package com.libreria.donquijote.bookprojection.domain;
 
-import javax.persistence.Converter;
-import javax.persistence.Table;
+import com.libreria.donquijote.book.domain.ItemBookConverter;
+import lombok.*;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Table(name = "BOOKPROJECTION")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
 public class BookProjection implements Serializable {
 
-    @javax.persistence.Id
-    private Long Id;
-    @Converter
-    private BookRead bookRead;
+    @Id
+    private String Id;
+
+    @Column(columnDefinition = "JSON")
+    private String data;
+
+
 }

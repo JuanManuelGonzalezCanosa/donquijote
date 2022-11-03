@@ -15,11 +15,8 @@ public class BookCreateService implements IBookCreateService {
 
     private ApplicationEventPublisher applicationEventPublisher;
 
-    public BookCreateService(@Qualifier("ibookrepository") IBookRepository repository) {
-        this.repository = repository;
-    }
 
-    public BookCreateService(IBookRepository repository, ApplicationEventPublisher applicationEventPublisher) {
+    public BookCreateService(@Qualifier("ibookrepository") IBookRepository repository, ApplicationEventPublisher applicationEventPublisher) {
         this.repository = repository;
         this.applicationEventPublisher = applicationEventPublisher;
     }
@@ -27,8 +24,17 @@ public class BookCreateService implements IBookCreateService {
     @Override
     public Book createBook(Book book) {
         //fue dado.
+
+        String id = book.getBookIsbn().getId();
+        String nameBook = book.getNameBook().getNameBook();
+        String nameAuthor = book.getBookNameAuthor().getFirstName() +" "+ book.getBookNameAuthor().getLastName();
+        int stock = book.getStock().getStock();
+        float price = book.getPrice().getPrice();
+
+
+        applicationEventPublisher.publishEvent(new BookAddeDomain(id, nameBook, nameAuthor, stock, price));
+
         return repository.save(book);
-        applicationEventPublisher.publishEvent(new BookAddeDomain());
 
     }
 }
