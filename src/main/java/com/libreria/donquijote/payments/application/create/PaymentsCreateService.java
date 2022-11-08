@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentsCreateService implements IPaymentsCreateService{
 
+    @Qualifier("ipaymentsrepository")
     private final IPaymentsRepository repository;
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    public PaymentsCreateService(@Qualifier("ipaymentsrepository") IPaymentsRepository repository, ApplicationEventPublisher applicationEventPublisher) {
+    public PaymentsCreateService(IPaymentsRepository repository, ApplicationEventPublisher applicationEventPublisher) {
         this.repository = repository;
         this.applicationEventPublisher = applicationEventPublisher;
     }
