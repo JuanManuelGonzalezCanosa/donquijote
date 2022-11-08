@@ -7,6 +7,7 @@ import com.libreria.donquijote.payments.domain.validations.date.PymentsDate;
 import com.libreria.donquijote.payments.domain.validations.fullpyment.PymentsFullPyment;
 import com.libreria.donquijote.payments.domain.validations.id.PymentsId;
 import com.libreria.donquijote.payments.domain.validations.type.PymentsType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController

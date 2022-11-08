@@ -21,6 +21,8 @@ public class PaymentsCreateService implements IPaymentsCreateService{
 
     @Override
     public Payments createPayments(Payments payments) {
-        return null;
+        // HACER EL EVENTO
+
+        return repository.save(payments);
     }
 }
