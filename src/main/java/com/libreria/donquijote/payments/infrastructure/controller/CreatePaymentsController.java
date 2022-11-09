@@ -3,11 +3,10 @@ package com.libreria.donquijote.payments.infrastructure.controller;
 import com.libreria.donquijote.payments.application.create.IPaymentsCreateService;
 import com.libreria.donquijote.payments.domain.Payments;
 import com.libreria.donquijote.payments.domain.validations.amount.PymentsAmount;
-import com.libreria.donquijote.payments.domain.validations.date.PymentsDate;
+import com.libreria.donquijote.payments.domain.validations.date_buy.PymentsDateBuy;
 import com.libreria.donquijote.payments.domain.validations.fullpyment.PymentsFullPyment;
 import com.libreria.donquijote.payments.domain.validations.id.PymentsId;
 import com.libreria.donquijote.payments.domain.validations.type.PymentsType;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,7 +21,7 @@ public class CreatePaymentsController implements ICreatePaymentsController{
     @Override
     public Payments createPyments(PaymentsDTO paymentsDTO) {
         Payments payments = new Payments(new PymentsId(paymentsDTO.getId()),
-                                         new PymentsDate(paymentsDTO.getDate()),
+                                         new PymentsDateBuy(paymentsDTO.getDate()),
                                          new PymentsAmount(paymentsDTO.getAmount()),
                                          new PymentsFullPyment(paymentsDTO.getFullPyment()),
                                          new PymentsType(paymentsDTO.getType()));

@@ -1,4 +1,4 @@
-package com.libreria.donquijote.payments.domain.validations.date;
+package com.libreria.donquijote.payments.domain.validations.date_buy;
 
 import com.libreria.donquijote.payments.domain.exception.PymentsExeption;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @AllArgsConstructor
 @Getter
-public class PymentsDate {
+public class PymentsDateBuy {
 
     private LocalDate date;
 
