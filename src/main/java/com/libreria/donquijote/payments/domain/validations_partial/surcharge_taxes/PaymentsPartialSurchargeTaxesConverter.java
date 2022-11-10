@@ -1,4 +1,4 @@
-package com.libreria.donquijote.payments_partial.domain.validations.surcharge_taxes;
+package com.libreria.donquijote.payments.domain.validations_partial.surcharge_taxes;
 
 import javax.persistence.AttributeConverter;
 

@@ -1,4 +1,4 @@
-package com.libreria.donquijote.payments_partial.domain.validations.cant_installments;
+package com.libreria.donquijote.payments.domain.validations_partial.cant_installments;
 
 import com.libreria.donquijote.payments.domain.exception.PymentsExeption;
 import lombok.AllArgsConstructor;

@@ -39,5 +39,4 @@ public DataSource mysql() {
 @EntityScan(basePackages = {"com.libreria.donquijote.book.domain", "com.libreria.donquijote.bookprojection.domain"})
 @Configuration
 public class KernelConfiguration {
-
 }

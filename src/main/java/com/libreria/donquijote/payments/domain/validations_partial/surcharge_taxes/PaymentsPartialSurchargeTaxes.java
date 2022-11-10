@@ -1,9 +1,7 @@
-package com.libreria.donquijote.payments_partial.domain.validations.surcharge_taxes;
+package com.libreria.donquijote.payments.domain.validations_partial.surcharge_taxes;
 
 
 
-import com.libreria.donquijote.payments_partial.domain.validations.expiration_date.PaymentsPartialExpirationDate;
-import com.libreria.donquijote.payments_partial.domain.validations.return_date.PaymentsPartialReturnDate;
 import static java.time.temporal.ChronoUnit.DAYS;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

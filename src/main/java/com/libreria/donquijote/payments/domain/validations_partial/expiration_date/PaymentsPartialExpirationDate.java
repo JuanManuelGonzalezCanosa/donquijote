@@ -1,4 +1,4 @@
-package com.libreria.donquijote.payments_partial.domain.validations.expiration_date;
+package com.libreria.donquijote.payments.domain.validations_partial.expiration_date;
 
 
 import com.libreria.donquijote.payments.domain.exception.PymentsExeption;

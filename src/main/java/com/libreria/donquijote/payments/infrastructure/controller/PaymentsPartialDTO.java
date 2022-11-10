@@ -1,19 +1,19 @@
 package com.libreria.donquijote.payments.infrastructure.controller;
 
-import com.libreria.donquijote.payments.domain.PaymentsPartial;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class PaymentsDTO {
+public class PaymentsPartialDTO {
 
     private Integer id;
     private LocalDate date;
     private float amount;
-    private String type;
-    private List<PaymentsPartial> paymentsPartialList;
+    private float fullPyment;
+    private boolean type;
+
 }

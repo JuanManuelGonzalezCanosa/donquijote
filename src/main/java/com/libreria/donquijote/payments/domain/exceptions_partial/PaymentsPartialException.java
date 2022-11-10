@@ -1,4 +1,4 @@
-package com.libreria.donquijote.payments_partial.domain.exceptions;
+package com.libreria.donquijote.payments.domain.exceptions_partial;
 
 public class PaymentsPartialException extends RuntimeException{
 

@@ -1,4 +1,4 @@
-package com.libreria.donquijote.payments_partial.domain.validations.id;
+package com.libreria.donquijote.payments.domain.validations_partial.id;
 
 
 import com.libreria.donquijote.payments.domain.exception.PymentsExeption;
