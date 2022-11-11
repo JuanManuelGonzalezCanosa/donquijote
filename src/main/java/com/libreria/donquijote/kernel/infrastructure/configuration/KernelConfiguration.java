@@ -36,7 +36,8 @@ public DataSource mysql() {
 }
 */
 @EnableTransactionManagement
-@EntityScan(basePackages = {"com.libreria.donquijote.book.domain", "com.libreria.donquijote.bookprojection.domain"})
+@EntityScan(basePackages = {"com.libreria.donquijote.book.domain", "com.libreria.donquijote.bookprojection.domain",
+        "com.libreria.donquijote.payments.domain"})
 @Configuration
 public class KernelConfiguration {
 }

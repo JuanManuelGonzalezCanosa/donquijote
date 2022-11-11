@@ -24,7 +24,7 @@ public class CreatePaymentsController implements ICreatePaymentsController{
 
     @Override
     public Payments createPyments(PaymentsDTO paymentsDTO) {
-        Payments payments = new Payments(new PymentsId(paymentsDTO.getId()),
+        Payments payments = new Payments(null,
                                          new PymentsDateBuy(paymentsDTO.getDate()),
                                          new PymentsAmount(paymentsDTO.getAmount()),
                                          new PymentsType(paymentsDTO.getType()),

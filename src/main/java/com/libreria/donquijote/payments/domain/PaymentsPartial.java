@@ -1,7 +1,5 @@
 package com.libreria.donquijote.payments.domain;
 
-import com.libreria.donquijote.payments.domain.validations_partial.cant_installments.PaymentsPartialCantInstallments;
-import com.libreria.donquijote.payments.domain.validations_partial.cant_installments.PaymentsPartialCantInstallmentsConverter;
 import com.libreria.donquijote.payments.domain.validations_partial.expiration_date.PaymentsPartialExpirationDate;
 import com.libreria.donquijote.payments.domain.validations_partial.expiration_date.PaymentsPartialExpirationDateConverter;
 import com.libreria.donquijote.payments.domain.validations_partial.fullpyment.PaymentsPartialFullPyment;
@@ -27,27 +25,28 @@ import javax.persistence.*;
 @Table(name = "payment_partial")
 public class PaymentsPartial {
 
+    //INTEGER ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Convert(converter = PaymentsPartialIdConverter.class)
-    private PaymentsPartialId id;
+    //@Convert(converter = PaymentsPartialIdConverter.class)
+    private Integer id;
 
+    //LOCALDATE FECHA DE VENCIMIENTO
     @Column(name = "expiration_date")
     @Convert(converter = PaymentsPartialExpirationDateConverter.class)
     private PaymentsPartialExpirationDate expirationDate;
 
+    //FLOAT IMPUESTO POR FALTA DE PAGO
     @Column(name = "surcharge_taxes")
     @Convert(converter = PaymentsPartialSurchargeTaxesConverter.class)
     private PaymentsPartialSurchargeTaxes surchargeTaxes;
 
-    @Column(name = "cant_installments")
-    @Convert(converter = PaymentsPartialCantInstallmentsConverter.class)
-    private PaymentsPartialCantInstallments cantInstallments;
-
+    //FLOAT CUANTO PAGO DE LA COUTA
     @Column(name = "full_pyment")
     @Convert(converter = PaymentsPartialFullPymentConverter.class)
     private PaymentsPartialFullPyment fullPyment;
 
+    //BOOLEAN SI ESTA HABILITADA LA TARJETA
     @Column(name = "status")
     @Convert(converter = PaymentsPartialStatusConverter.class)
     private PaymentsPartialStatus status;

@@ -24,30 +24,30 @@ import java.util.List;
 @Table(name = "PAYMENTS")
 public class Payments {
 
-    // INTERGER
+    // INTERGER ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Convert(converter = PymentsIdConverter.class)
+    //@Convert(converter = PymentsIdConverter.class)
     @Column(name = "id")
-    private PymentsId id;
+    private Integer id;
 
-    //LOCALDATE
+    //LOCALDATE DIA EN EL QUE SE COMPRO
     @Column(name = "date")
     @Convert(converter = PymentsDateBuyConverter.class)
     private PymentsDateBuy DateBuy;
 
-    //FLOAT
+    //FLOAT PRECIO QUE SALIO EL LIBRO
     @Column(name = "amount")
     @Convert(converter = PymentsAmountConverter.class)
     private PymentsAmount amount;
 
 
-    //STRING
+    //STRING EFECTIVO/CREDITO/DEBITO
     @Column(name = "type")
     @Convert(converter = PymentsTypeConverter.class)
     private PymentsType type;
 
-    //LIST
+    //LIST LISTA DE LAS CUOTAS
     @OneToMany(cascade = CascadeType.ALL)
     private List<PaymentsPartial> paymentsPartialList;
 

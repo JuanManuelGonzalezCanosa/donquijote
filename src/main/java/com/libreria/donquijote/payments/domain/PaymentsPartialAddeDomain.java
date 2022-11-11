@@ -16,8 +16,6 @@ public class PaymentsPartialAddeDomain {
 
     private final float surchargeTaxes;
 
-    private final int cantInstallments;
-
     private final float fullPyment;
 
     private final boolean status;
