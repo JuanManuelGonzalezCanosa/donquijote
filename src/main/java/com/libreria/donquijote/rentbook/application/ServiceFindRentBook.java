@@ -4,14 +4,17 @@ import com.libreria.donquijote.rentbook.domain.RentBook;
 import com.libreria.donquijote.rentbook.domain.RentBookNotFoundException;
 import com.libreria.donquijote.rentbook.domain.RentBookRepository;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class ServiceFindRentBook implements IServiceRentFind {
 
     private final RentBookRepository rentBookRepository;
 
-    public ServiceFindRentBook(RentBookRepository rentBookRepository) {
+    public ServiceFindRentBook(@Qualifier("postgresBookRepository") RentBookRepository rentBookRepository) {
         this.rentBookRepository = rentBookRepository;
     }
 

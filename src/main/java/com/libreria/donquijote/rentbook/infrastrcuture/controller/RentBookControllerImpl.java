@@ -1,7 +1,8 @@
 package com.libreria.donquijote.rentbook.infrastrcuture.controller;
 
-import com.libreria.donquijote.rentbook.application.rent.IServiceRentBook;
-import com.libreria.donquijote.rentbook.domain.RentBook;
+import com.libreria.donquijote.kernel.cqrs.GatewayDispatcher;
+import com.libreria.donquijote.rentbook.application.rent.create.command.BookCreationCommand;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -9,22 +10,27 @@ import java.time.LocalDate;
 @RestController
 public class RentBookControllerImpl implements IRentBookController {
 
-    private final IServiceRentBook service;
+    private final GatewayDispatcher gatewayDispatcher;
 
-    public RentBookControllerImpl(IServiceRentBook service) {
-        this.service = service;
+
+    public RentBookControllerImpl(GatewayDispatcher gatewayDispatcher) {
+        this.gatewayDispatcher = gatewayDispatcher;
     }
 
     @Override
-    public void rent(RentBookDTO rentBookDTO) {
-        service.rent(
-                RentBook.builder()
-                        .id(rentBookDTO.getId())
-                        .clientId(rentBookDTO.getClientId())
-                        .bookId(rentBookDTO.getBookId())
-                        .rentPrice(100.00) //TODO: armar table book-price
-                        .initDate(LocalDate.now())
-                        .build()
-        );
+    public ResponseEntity<?> rent(RentBookDTO rentBookDTO) {
+
+        gatewayDispatcher.dispatch(new BookCreationCommand(
+                rentBookDTO.getId(),
+                rentBookDTO.getBookId(),
+                rentBookDTO.getClientId(),
+                100.00,
+                LocalDate.now(),
+                null,
+                false
+        ));
+
+        return ResponseEntity.accepted().body("accepted");
+
     }
 }

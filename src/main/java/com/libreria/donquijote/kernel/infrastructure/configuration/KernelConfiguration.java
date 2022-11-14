@@ -22,7 +22,7 @@ public class KernelConfiguration {
         return dataSourceBuilder.build();
     }
 
-
+/*
     @Bean
     public DataSource mysql() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
@@ -32,6 +32,6 @@ public class KernelConfiguration {
         dataSourceBuilder.password("genkin");
         return dataSourceBuilder.build();
     }
-
+*/
 
 }
