@@ -13,7 +13,7 @@ public class PaymentsDTO {
 
     private Integer id;
     private LocalDate date;
-    private float amount;
+    private Double amount;
     private String type;
     private List<PaymentsPartial> paymentsPartialList;
 }

@@ -6,25 +6,25 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-@AllArgsConstructor
 @Getter
-public class PaymentsPartialSurchargeTaxes {
+public class PaymentsPartialSurchargeTaxes implements Serializable {
+
+    private final Double taxes;
+    public PaymentsPartialSurchargeTaxes(Double taxes) {
+        this.taxes = taxes;
+    }
 
 
-    private LocalDate expirationDate;
 
-    private LocalDate returnDate;
-
-    private float taxes;
-
-    public float calculate(LocalDate expirationDate, LocalDate returnDate) {
-        taxes = 0;
+    public Double calculate(LocalDate expirationDate, LocalDate returnDate) {
+        Double taxes = Double.valueOf(0);
         if (expirationDate.isAfter(returnDate)) {
             long daysTaxes = DAYS.between(expirationDate, returnDate);
             daysTaxes = daysTaxes * 200;
-            float taxes = daysTaxes;
+             taxes = Double.valueOf(daysTaxes);
         }
 
         return taxes;

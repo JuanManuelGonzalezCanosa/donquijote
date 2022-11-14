@@ -1,6 +1,5 @@
 package com.libreria.donquijote.bookprojection.domain;
 
-import com.libreria.donquijote.book.domain.ItemBookConverter;
 import lombok.*;
 
 import javax.persistence.*;

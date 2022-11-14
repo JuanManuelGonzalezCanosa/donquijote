@@ -4,16 +4,23 @@ import com.libreria.donquijote.payments.domain.exception.PymentsExeption;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
+import java.io.Serializable;
+
 @Getter
-public class PaymentsPartialFullPyment {
+public class PaymentsPartialFullPyment implements Serializable {
 
-    private float fullPyment;
+    private final Double fullPyment;
 
-    public void validate(float fullPyment){
+    PaymentsPartialFullPyment( Double fullPyment){
+        this.fullPyment = validate(fullPyment);
+    }
+
+
+    public Double validate(Double fullPyment){
         if(fullPyment < 0){
             throw new PymentsExeption("Error el Pago no puede ser negativo");
         }
+        return fullPyment;
     }
 
 

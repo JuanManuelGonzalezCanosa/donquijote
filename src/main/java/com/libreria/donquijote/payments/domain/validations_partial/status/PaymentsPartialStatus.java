@@ -5,15 +5,22 @@ import com.libreria.donquijote.payments.domain.exception.PymentsExeption;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
+import java.io.Serializable;
+
 @Getter
-public class PaymentsPartialStatus {
+public class PaymentsPartialStatus implements Serializable {
 
-    private boolean status;
+    private final Boolean status;
 
-    public void validate(boolean status){
+
+    public PaymentsPartialStatus(Boolean status) {
+        this.status = validate(status);
+    }
+
+    public boolean validate(Boolean status){
         if(!status){
             throw new PymentsExeption("La tarjeta no esta HABILITADA");
         }
+        return true;
     }
 }

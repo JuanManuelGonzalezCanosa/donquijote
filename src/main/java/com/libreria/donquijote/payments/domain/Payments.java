@@ -13,6 +13,7 @@ import com.libreria.donquijote.payments.domain.validations.type.PymentsTypeConve
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "PAYMENTS")
-public class Payments {
+public class Payments implements Serializable {
 
     // INTERGER ID
     @Id
@@ -48,7 +49,7 @@ public class Payments {
     private PymentsType type;
 
     //LIST LISTA DE LAS CUOTAS
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "payment")
     private List<PaymentsPartial> paymentsPartialList;
 
 }

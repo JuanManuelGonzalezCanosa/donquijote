@@ -1,7 +1,9 @@
 package com.libreria.donquijote.book.domain.validations.stock;
 
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
+@Converter
 public class BookStockConverter implements AttributeConverter<BookStock, Integer> {
 
     @Override

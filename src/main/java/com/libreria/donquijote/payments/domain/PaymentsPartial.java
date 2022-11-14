@@ -10,20 +10,20 @@ import com.libreria.donquijote.payments.domain.validations_partial.status.Paymen
 import com.libreria.donquijote.payments.domain.validations_partial.status.PaymentsPartialStatusConverter;
 import com.libreria.donquijote.payments.domain.validations_partial.surcharge_taxes.PaymentsPartialSurchargeTaxes;
 import com.libreria.donquijote.payments.domain.validations_partial.surcharge_taxes.PaymentsPartialSurchargeTaxesConverter;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
+
+@Entity
+@Setter
+@Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@Entity
 @Table(name = "payment_partial")
-public class PaymentsPartial {
+public class PaymentsPartial implements Serializable {
 
     //INTEGER ID
     @Id
@@ -50,4 +50,8 @@ public class PaymentsPartial {
     @Column(name = "status")
     @Convert(converter = PaymentsPartialStatusConverter.class)
     private PaymentsPartialStatus status;
+
+    @ManyToOne
+    //@JoinColumn(name = "id")
+    private Payments payment;
 }

@@ -1,7 +1,9 @@
 package com.libreria.donquijote.payments.domain.validations.type;
 
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
+@Converter
 public class PymentsTypeConverter implements AttributeConverter<PymentsType, String> {
 
 

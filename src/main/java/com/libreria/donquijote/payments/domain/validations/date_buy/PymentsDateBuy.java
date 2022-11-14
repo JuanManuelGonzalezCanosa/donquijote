@@ -4,17 +4,22 @@ import com.libreria.donquijote.payments.domain.exception.PymentsExeption;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-@AllArgsConstructor
 @Getter
-public class PymentsDateBuy {
+public class PymentsDateBuy implements Serializable {
 
-    private LocalDate date;
+    private final LocalDate date;
 
-    public void validate(LocalDate date){
+    public PymentsDateBuy(LocalDate date) {
+        this.date = validate(date);
+    }
+
+    public LocalDate validate(LocalDate date){
         if(date.isBefore(LocalDate.now())){
             throw new PymentsExeption("Error la fecha de Compra en antigua");
         }
+        return date;
     }
 }

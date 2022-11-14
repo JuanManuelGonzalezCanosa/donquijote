@@ -3,7 +3,9 @@ package com.libreria.donquijote.book.domain.validations.namebook;
 import com.libreria.donquijote.book.domain.Book;
 
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
+@Converter
 public class BookNameBookConverter implements AttributeConverter<BookNameBook, String> {
 
     private Book book;

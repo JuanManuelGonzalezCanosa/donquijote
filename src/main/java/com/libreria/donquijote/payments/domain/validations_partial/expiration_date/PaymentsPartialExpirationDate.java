@@ -5,17 +5,24 @@ import com.libreria.donquijote.payments.domain.exception.PymentsExeption;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-@AllArgsConstructor
 @Getter
-public class PaymentsPartialExpirationDate {
+public class PaymentsPartialExpirationDate implements Serializable  {
 
-    private LocalDate expirationDate;
+    private final LocalDate expirationDate;
 
-    public void validate(LocalDate expirationDate){
+
+    PaymentsPartialExpirationDate(LocalDate expirationDate){
+        this.expirationDate = validate(expirationDate);
+    }
+
+    public LocalDate validate(LocalDate expirationDate){
         if(expirationDate.isBefore(LocalDate.now())){
             throw new PymentsExeption("Error la fecha no puede ser ANTERIOR a la actual");
         }
+
+        return expirationDate;
     }
 }

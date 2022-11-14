@@ -6,16 +6,22 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
+import java.io.Serializable;
+
 @Getter
-public class PymentsType {
+public class PymentsType implements Serializable {
 
-    private String type;
+    private final String type;
 
-    public void validate(String type){
+    public PymentsType(String type){
+        this.type = validate(type);
+    }
+
+    public String validate(String type){
             if(!type.equalsIgnoreCase("credito") || !type.equalsIgnoreCase("debito") || !type.equalsIgnoreCase("efectivo")){
                 throw new PymentsExeption("Error el Tipo de pago es Incorrecto");
             }
+        return type;
         }
     }
 
